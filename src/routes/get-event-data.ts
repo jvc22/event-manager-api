@@ -13,12 +13,14 @@ export async function getEventData(app: FastifyInstance) {
         }),
         response: {
           200: z.object({
-            id: z.string().uuid(),
-            title: z.string(),
-            details: z.string().nullable(),
-            slug: z.string(),
-            maximumAttendees: z.number().int().nullable(),
-            attendeesAmount: z.number().int(),
+            event: z.object({
+              id: z.string().uuid(),
+              title: z.string(),
+              details: z.string().nullable(),
+              slug: z.string(),
+              maximumAttendees: z.number().int().nullable(),
+              attendeesAmount: z.number().int(),
+            }),
           }),
         },
       },
@@ -49,12 +51,14 @@ export async function getEventData(app: FastifyInstance) {
       }
 
       return reply.status(200).send({
-        id: eventInformation.id,
-        title: eventInformation.title,
-        details: eventInformation.details,
-        slug: eventInformation.slug,
-        maximumAttendees: eventInformation.maximumAttendees,
-        attendeesAmount: eventInformation._count.attendees,
+        event: {
+          id: eventInformation.id,
+          title: eventInformation.title,
+          details: eventInformation.details,
+          slug: eventInformation.slug,
+          maximumAttendees: eventInformation.maximumAttendees,
+          attendeesAmount: eventInformation._count.attendees,
+        },
       })
     },
   )
