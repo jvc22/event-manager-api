@@ -6,6 +6,7 @@ import {
 
 import { createEvent } from './routes/create-event'
 import { registerForEvent } from './routes/register-for-event'
+import { getEventData } from './routes/get-event-data'
 
 const app = fastify()
 
@@ -14,6 +15,7 @@ app.setSerializerCompiler(serializerCompiler)
 
 app.register(createEvent)
 app.register(registerForEvent)
+app.register(getEventData)
 
 app
   .listen({
