@@ -8,6 +8,7 @@ import { createEvent } from './routes/create-event'
 import { registerForEvent } from './routes/register-for-event'
 import { getEventData } from './routes/get-event-data'
 import { getAttendeeBadge } from './routes/get-attendee-badge'
+import { checkIn } from './routes/check-in'
 
 const app = fastify()
 
@@ -18,6 +19,7 @@ app.register(createEvent)
 app.register(registerForEvent)
 app.register(getEventData)
 app.register(getAttendeeBadge)
+app.register(checkIn)
 
 app
   .listen({
