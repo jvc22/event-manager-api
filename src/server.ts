@@ -1,13 +1,9 @@
-import { PrismaClient } from '@prisma/client'
 import fastify from 'fastify'
 import z from 'zod'
+import { prisma } from './lib/prisma'
 import { generateSlug } from './utils/generate-slug'
 
 const app = fastify()
-
-const prisma = new PrismaClient({
-  log: ['query'],
-})
 
 app.post('/events', async (request, reply) => {
   const createEventSchema = z.object({
